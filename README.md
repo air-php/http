@@ -16,6 +16,8 @@ The `Request` class encapsulates a HTTP request. You can create a `Request` like
 
     <?php
 
+    use Air\HTTP\Request;
+
     new Request('http://www.test.com/test/', 'GET');
 
 Once you have a `Request` object, it offers convenient methods for accessing request data, such as `getUriPath()` and `getQueryParameters()`.
