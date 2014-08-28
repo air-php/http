@@ -16,7 +16,7 @@ The `Request` class encapsulates a HTTP request. You can create a `Request` like
 
     <?php
 
-    use Air\HTTP\Request;
+    use Air\HTTP\Request\Request;
 
     new Request('http://www.test.com/test/', 'GET');
 
