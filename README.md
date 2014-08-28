@@ -1,0 +1,2 @@
+# HTTP
+[![Build Status](https://scrutinizer-ci.com/g/air-php/http/badges/build.png?b=master)](https://scrutinizer-ci.com/g/air-php/http/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/air-php/http/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/air-php/http/?branch=master)
