@@ -1,8 +1,8 @@
 <?php
 
-namespace Air\HTTP\Tests;
+namespace Air\HTTP\Request\Tests;
 
-use Air\HTTP\Request;
+use Air\HTTP\Request\Request;
 
 class RequestTest extends \PHPUnit_Framework_TestCase
 {

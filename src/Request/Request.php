@@ -1,6 +1,6 @@
 <?php
 
-namespace Air\HTTP;
+namespace Air\HTTP\Request;
 
 class Request implements RequestInterface
 {
