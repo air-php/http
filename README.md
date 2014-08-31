@@ -7,7 +7,7 @@ The HTTP library includes classes for abstracting the [Hypertext Transfer Protoc
 Installation via [Composer](https://getcomposer.org/) is recommended.
 
     "require": {
-        "air-php/http": "~1.0"
+        "air-php/http": "dev-master"
     }
 
 
