@@ -84,4 +84,13 @@ class Request implements RequestInterface
 
         return $params;
     }
+
+
+    /**
+     * @return array Request POST data.
+     */
+    public function getPostData()
+    {
+        return $_POST;
+    }
 }

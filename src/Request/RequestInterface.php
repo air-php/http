@@ -26,4 +26,10 @@ interface RequestInterface
      * @return array The query parameters.
      */
     public function getQueryParameters();
+
+
+    /**
+     * @return array Request POST data.
+     */
+    public function getPostData();
 }
