@@ -23,14 +23,22 @@ class Request implements RequestInterface
 
 
     /**
+     * @var array $postData An array of post data.
+     */
+    protected $postData;
+
+
+    /**
      * @param string $uri The request URI.
      * @param string $method The request method.
+     * @param array $postData The request post data.
      * @throws \InvalidArgumentException
      */
-    public function __construct($uri, $method = 'GET')
+    public function __construct($uri, $method = 'GET', array $postData = [])
     {
         $this->uri = $uri;
         $this->method = $method;
+        $this->postData = $postData;
 
         // Parse the URI.
         $parsed_uri = parse_url($uri);
@@ -91,6 +99,17 @@ class Request implements RequestInterface
      */
     public function getPostData()
     {
-        return $_POST;
+        return $this->postData;
+    }
+
+
+    /**
+     * Add post data to the request.
+     *
+     * @param array $data An array of data.
+     */
+    public function addPostData(array $data)
+    {
+        $this->postData = array_merge($this->postData, $data);
     }
 }

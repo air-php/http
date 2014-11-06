@@ -32,4 +32,12 @@ interface RequestInterface
      * @return array Request POST data.
      */
     public function getPostData();
+
+
+    /**
+     * Add post data to the request.
+     *
+     * @param array $data An array of data.
+     */
+    public function addPostData(array $data);
 }
