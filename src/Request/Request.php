@@ -23,22 +23,30 @@ class Request implements RequestInterface
 
 
     /**
-     * @var array $postData An array of post data.
+     * @var array $requestData An array of request data (from POST, PUT, etc).
      */
-    protected $postData;
+    protected $requestData;
+
+
+    /**
+     * @var array $getData An array of query data (i.e. a GET request).
+     */
+    protected $queryData;
 
 
     /**
      * @param string $uri The request URI.
      * @param string $method The request method.
-     * @param array $postData The request post data.
+     * @param array $requestData The request data.
+     * @param array $queryData The query data.
      * @throws \InvalidArgumentException
      */
-    public function __construct($uri, $method = 'GET', array $postData = [])
+    public function __construct($uri, $method = self::METHOD_GET, array $requestData = [], array $queryData = [])
     {
         $this->uri = $uri;
         $this->method = $method;
-        $this->postData = $postData;
+        $this->requestData = $requestData;
+        $this->queryData = $queryData;
 
         // Parse the URI.
         $parsed_uri = parse_url($uri);
@@ -80,36 +88,48 @@ class Request implements RequestInterface
 
 
     /**
-     * @return array The query parameters.
+     * @return array The request data.
      */
-    public function getQueryParameters()
+    public function getRequestData()
     {
-        $params = [];
-
-        if (isset($this->uriComponents['query'])) {
-            parse_str($this->uriComponents['query'], $params);
-        }
-
-        return $params;
+        return $this->requestData;
     }
 
 
     /**
-     * @return array Request POST data.
+     * @return array The query data.
      */
-    public function getPostData()
+    public function getQueryData()
     {
-        return $this->postData;
+        return $this->queryData;
     }
 
 
     /**
-     * Add post data to the request.
+     * Add data to the request.
      *
      * @param array $data An array of data.
      */
-    public function addPostData(array $data)
+    public function addRequestData(array $data)
     {
-        $this->postData = array_merge($this->postData, $data);
+        $this->requestData = array_merge($this->requestData, $data);
+    }
+
+
+    /**
+     * @return bool Whether the method is post or not.
+     */
+    public function isPost()
+    {
+        return $this->method === self::METHOD_POST;
+    }
+
+
+    /**
+     * @return bool Whether the method is get or not.
+     */
+    public function isGet()
+    {
+        return $this->method === self::METHOD_GET;
     }
 }
