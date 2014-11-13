@@ -46,7 +46,7 @@ interface RequestInterface
 
 
     /**
-     * Add post data to the request.
+     * Add data to the request.
      *
      * @param array $data An array of data.
      */
