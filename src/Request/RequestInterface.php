@@ -16,6 +16,16 @@ interface RequestInterface
 
 
     /**
+     * @param string $uri The request URI.
+     * @param string $method The request method.
+     * @param array $requestData The request data.
+     * @param array $queryData The query data.
+     * @throws \InvalidArgumentException
+     */
+    public function __construct($uri, $method = self::METHOD_GET, array $requestData = [], array $queryData = []);
+
+
+    /**
      * @return string The request method.
      */
     public function getMethod();
