@@ -51,4 +51,16 @@ interface RequestInterface
      * @param array $data An array of data.
      */
     public function addRequestData(array $data);
+
+
+    /**
+     * @return bool Whether the method is post or not.
+     */
+    public function isPost();
+
+
+    /**
+     * @return bool Whether the method is get or not.
+     */
+    public function isGet();
 }
