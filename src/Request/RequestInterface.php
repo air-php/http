@@ -34,9 +34,9 @@ interface RequestInterface
 
 
     /**
-     * @return array The query parameters.
+     * @return array The request data.
      */
-    public function getQueryParameters();
+    public function getRequestData();
 
 
     /**
@@ -50,5 +50,5 @@ interface RequestInterface
      *
      * @param array $data An array of data.
      */
-    public function addPostData(array $data);
+    public function addRequestData(array $data);
 }
