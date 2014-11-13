@@ -40,9 +40,9 @@ interface RequestInterface
 
 
     /**
-     * @return array Request POST data.
+     * @return array The query data.
      */
-    public function getPostData();
+    public function getQueryData();
 
 
     /**
