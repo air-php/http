@@ -29,24 +29,39 @@ class Request implements RequestInterface
 
 
     /**
-     * @var array $getData An array of query data (i.e. a GET request).
+     * @var array $queryData An array of query data (i.e. a GET request).
      */
     protected $queryData;
 
 
     /**
+     * @var array $serverData An array of server data (i.e. HTTP_REFERER, DOC_ROOT etc).
+     */
+    protected $serverData;
+
+
+    /**
+     * Class constructor.
+     *
      * @param string $uri The request URI.
      * @param string $method The request method.
      * @param array $requestData The request data.
      * @param array $queryData The query data.
+     * @param array $serverData The server data.
      * @throws \InvalidArgumentException
      */
-    public function __construct($uri, $method = self::METHOD_GET, array $requestData = [], array $queryData = [])
-    {
+    public function __construct(
+        $uri,
+        $method = self::METHOD_GET,
+        array $requestData = [],
+        array $queryData = [],
+        array $serverData = []
+    ) {
         $this->uri = $uri;
         $this->method = $method;
         $this->requestData = $requestData;
         $this->queryData = $queryData;
+        $this->serverData = $serverData;
 
         // Parse the URI.
         $parsed_uri = parse_url($uri);
@@ -61,6 +76,8 @@ class Request implements RequestInterface
 
 
     /**
+     * Get the request method.
+     *
      * @return string The request method.
      */
     public function getMethod()
@@ -70,6 +87,8 @@ class Request implements RequestInterface
 
 
     /**
+     * Get the URI.
+     *
      * @return string The URI.
      */
     public function getUri()
@@ -79,6 +98,8 @@ class Request implements RequestInterface
 
 
     /**
+     * Get the URI path.
+     *
      * @return string The URI path.
      */
     public function getUriPath()
@@ -88,6 +109,8 @@ class Request implements RequestInterface
 
 
     /**
+     * Get the request data.
+     *
      * @return array The request data.
      */
     public function getRequestData()
@@ -97,11 +120,41 @@ class Request implements RequestInterface
 
 
     /**
+     * Get the query data.
+     *
      * @return array The query data.
      */
     public function getQueryData()
     {
         return $this->queryData;
+    }
+
+
+    /**
+     * Get the server data.
+     *
+     * @return array The server data.
+     */
+    public function getServerData()
+    {
+        return $this->serverData;
+    }
+
+
+    /**
+     * Get the HTTP REFERER from the server data.
+     *
+     * @return string|null The referer or null if not found.
+     */
+    public function getReferer()
+    {
+        $referer = null;
+
+        if (array_key_exists(self::REFERER_KEY, $this->serverData)) {
+            $referer = $this->serverData[self::REFERER_KEY];
+        }
+
+        return $referer;
     }
 
 
