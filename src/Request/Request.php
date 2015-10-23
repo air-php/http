@@ -41,6 +41,12 @@ class Request implements RequestInterface
 
 
     /**
+     * @var array $cookies An array of cookies the current request holds
+     */
+    protected $cookies;
+
+
+    /**
      * Class constructor.
      *
      * @param string $uri The request URI.
@@ -48,6 +54,7 @@ class Request implements RequestInterface
      * @param array $requestData The request data.
      * @param array $queryData The query data.
      * @param array $serverData The server data.
+     * @param array $cookies The cookies for the current request
      * @throws \InvalidArgumentException
      */
     public function __construct(
@@ -55,13 +62,15 @@ class Request implements RequestInterface
         $method = self::METHOD_GET,
         array $requestData = [],
         array $queryData = [],
-        array $serverData = []
+        array $serverData = [],
+        array $cookies = []
     ) {
         $this->uri = $uri;
         $this->method = $method;
         $this->requestData = $requestData;
         $this->queryData = $queryData;
         $this->serverData = $serverData;
+        $this->cookies = $cookies;
 
         // Parse the URI.
         $parsed_uri = parse_url($uri);
@@ -184,5 +193,31 @@ class Request implements RequestInterface
     public function isGet()
     {
         return $this->method === self::METHOD_GET;
+    }
+
+
+    /**
+     * Get cookie value by name
+     *
+     * @param string $name
+     *
+     * @return string|null returns the cookie value for the index name provided
+     */
+    public function getCookie($name)
+    {
+        return (isset($this->cookies[$name])) ? $this->cookies[$name] : null;
+    }
+
+
+    /**
+     * Returns true if the cookie is set for the name provided else false
+     *
+     * @param string @name
+     *
+     * @return boolean
+     */
+    public function issetCookie($name)
+    {
+        return ($this->getCookie($name) !== null);
     }
 }

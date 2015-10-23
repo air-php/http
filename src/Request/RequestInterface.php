@@ -105,4 +105,24 @@ interface RequestInterface
      * @return bool Whether the method is get or not.
      */
     public function isGet();
+
+
+    /**
+     * Get cookie value by name
+     *
+     * @param string $name
+     *
+     * @return string returns the cookie value for the index name provided
+     */
+    public function getCookie($name);
+
+
+    /**
+     * Returns true if the cookie is set for the name provided else false
+     *
+     * @param string @name
+     *
+     * @return boolean
+     */
+    public function issetCookie($name);
 }

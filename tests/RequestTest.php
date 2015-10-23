@@ -11,6 +11,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     private $request;
 
+    CONST COOKIE_VALUE = 'I have a right to exist';
+
 
     /**
      * Setup a new request object for each test.
@@ -28,6 +30,10 @@ class RequestTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'HTTP_REFERER' => 'http://test.com/'
+            ],
+            // Cookies
+            [
+                'PHPSESSID' => self::COOKIE_VALUE,
             ]
         );
     }
@@ -156,5 +162,31 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetReferer()
     {
         $this->assertEquals('http://test.com/', $this->request->getReferer());
+    }
+
+
+    /**
+     * Ensure that the getCookie() method returns the value of the cookie set
+     */
+    public function testGetCookie()
+    {
+        // Will return the value as mocked above
+        $this->assertEquals(self::COOKIE_VALUE, $this->request->getCookie('PHPSESSID'));
+
+        // Will return null if the value isnt set
+        $this->assertNull($this->request->getCookie('nonexistent_cookie'));
+    }
+
+
+    /**
+     * Ensure the issetCookie() method returns a boolean in any possible scenario
+     */
+    public function testIssetCookie()
+    {
+        // Will return true if the value is set
+        $this->assertTrue($this->request->issetCookie('PHPSESSID'));
+
+        // Will return false if the value is not set
+        $this->assertFalse($this->request->issetCookie('nonexistent_cookie'));
     }
 }
