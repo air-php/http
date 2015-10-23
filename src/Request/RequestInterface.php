@@ -4,6 +4,9 @@ namespace Air\HTTP\Request;
 
 interface RequestInterface
 {
+    /**
+     * Request methods.
+     */
     const METHOD_CONNECT = 'CONNECT';
     const METHOD_DELETE = 'DELETE';
     const METHOD_GET = 'GET';
@@ -16,13 +19,26 @@ interface RequestInterface
 
 
     /**
+     * Server data parameters.
+     */
+    const REFERER_KEY = 'HTTP_REFERER';
+
+
+    /**
      * @param string $uri The request URI.
      * @param string $method The request method.
      * @param array $requestData The request data.
      * @param array $queryData The query data.
+     * @param array $serverData The server data.
      * @throws \InvalidArgumentException
      */
-    public function __construct($uri, $method = self::METHOD_GET, array $requestData = [], array $queryData = []);
+    public function __construct(
+        $uri,
+        $method = self::METHOD_GET,
+        array $requestData = [],
+        array $queryData = [],
+        array $serverData = []
+    );
 
 
     /**
@@ -56,6 +72,22 @@ interface RequestInterface
 
 
     /**
+     * Get the server data.
+     *
+     * @return array The server data.
+     */
+    public function getServerData();
+
+
+    /**
+     * Get the HTTP REFERER from the server data.
+     *
+     * @return string|null The referer or null if not found.
+     */
+    public function getReferer();
+
+
+    /**
      * Add data to the request.
      *
      * @param array $data An array of data.
@@ -73,4 +105,24 @@ interface RequestInterface
      * @return bool Whether the method is get or not.
      */
     public function isGet();
+
+
+    /**
+     * Get cookie value by name
+     *
+     * @param string $name
+     *
+     * @return string returns the cookie value for the index name provided
+     */
+    public function getCookie($name);
+
+
+    /**
+     * Returns true if the cookie is set for the name provided else false
+     *
+     * @param string @name
+     *
+     * @return boolean
+     */
+    public function issetCookie($name);
 }
