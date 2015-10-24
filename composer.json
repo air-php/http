@@ -1,6 +1,5 @@
 {
     "name": "air-php/http",
-    "version": "0.1",
     "type": "library",
     "description": "A HTTP library.",
     "require": {
