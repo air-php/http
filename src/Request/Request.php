@@ -47,6 +47,12 @@ class Request implements RequestInterface
 
 
     /**
+     * @var array $fileData An array of file data.
+     */
+    protected $fileData;
+
+
+    /**
      * Class constructor.
      *
      * @param string $uri The request URI.
@@ -55,6 +61,7 @@ class Request implements RequestInterface
      * @param array $queryData The query data.
      * @param array $serverData The server data.
      * @param array $cookies The cookies for the current request
+     * @param array $fileData An array of file data.
      * @throws \InvalidArgumentException
      */
     public function __construct(
@@ -63,7 +70,8 @@ class Request implements RequestInterface
         array $requestData = [],
         array $queryData = [],
         array $serverData = [],
-        array $cookies = []
+        array $cookies = [],
+        array $fileData = []
     ) {
         $this->uri = $uri;
         $this->method = $method;
@@ -71,6 +79,7 @@ class Request implements RequestInterface
         $this->queryData = $queryData;
         $this->serverData = $serverData;
         $this->cookies = $cookies;
+        $this->fileData = $fileData;
 
         // Parse the URI.
         $parsed_uri = parse_url($uri);
@@ -164,6 +173,17 @@ class Request implements RequestInterface
         }
 
         return $referer;
+    }
+
+
+    /**
+     * Get file data.
+     *
+     * @return array File data.
+     */
+    public function getFileData()
+    {
+        return $this->fileData;
     }
 
 

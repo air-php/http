@@ -37,7 +37,8 @@ interface RequestInterface
         $method = self::METHOD_GET,
         array $requestData = [],
         array $queryData = [],
-        array $serverData = []
+        array $serverData = [],
+        array $fileData = []
     );
 
 
@@ -85,6 +86,14 @@ interface RequestInterface
      * @return string|null The referer or null if not found.
      */
     public function getReferer();
+
+
+    /**
+     * Get file data.
+     *
+     * @return array File data.
+     */
+    public function getFileData();
 
 
     /**
