@@ -104,6 +104,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($this->request->getRequestData()));
         $this->assertArrayHasKey('test', $this->request->getRequestData());
         $this->assertEquals('true', $this->request->getRequestData()['test']);
+        $this->assertEquals('true', $this->request->getRequestData('test'));
+        $this->assertEquals('Pizza', $this->request->getRequestData('Burger', 'Pizza'));
+        $this->assertNull($this->request->getRequestData('Burger'));
     }
 
 

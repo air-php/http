@@ -61,9 +61,12 @@ interface RequestInterface
 
 
     /**
-     * @return array The request data.
+     * @param mixed $key The data key.
+     * @param mixed $default The value to return if the key is not found.
+     *
+     * @return mixed The request data.
      */
-    public function getRequestData();
+    public function getRequestData($key = null, $default = null);
 
 
     /**

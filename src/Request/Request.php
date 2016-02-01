@@ -127,13 +127,22 @@ class Request implements RequestInterface
 
 
     /**
-     * Get the request data.
+     * @param mixed $key The data key.
+     * @param mixed $default The value to return if the key is not found.
      *
-     * @return array The request data.
+     * @return mixed The request data.
      */
-    public function getRequestData()
+    public function getRequestData($key = null, $default = null)
     {
-        return $this->requestData;
+        if (!is_null($key)) {
+            if (isset($this->requestData[$key])) {
+                return $this->requestData[$key];
+            } else {
+                return $default;
+            }
+        } else {
+            return $this->requestData;
+        }
     }
 
 
