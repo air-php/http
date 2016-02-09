@@ -249,4 +249,15 @@ class Request implements RequestInterface
     {
         return ($this->getCookie($name) !== null);
     }
+
+
+    /**
+     * Returns the content of the request.
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return file_get_contents('php://input');
+    }
 }

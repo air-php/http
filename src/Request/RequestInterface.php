@@ -137,4 +137,12 @@ interface RequestInterface
      * @return boolean
      */
     public function issetCookie($name);
+
+
+    /**
+     * Returns the content of the request.
+     *
+     * @return string
+     */
+    public function getContent();
 }
